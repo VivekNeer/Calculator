@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,100;1,300;1,400&family=Rubik+Doodle+Shadow&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
@@ -73,3 +75,20 @@ body {
     font-size: 18px; /* Adjust font size as needed */
 }
 
+.screen {
+    height: 100px;
+    background-color: yellowgreen;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-end; /* Align numbers to the bottom */
+    justify-content: flex-end; /* Align numbers to the right */
+    padding: 10px;
+    font-family: 'Roboto', sans-serif; /* Use Roboto as fallback font */
+    font-size: 24px;
+    overflow: auto;
+}
+
+.screen .elevator-font {
+    font-family: 'Rubik Doodle Shadow', sans-serif; /* Use the correct syntax for Google Fonts */
+}
