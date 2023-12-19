@@ -1,13 +1,40 @@
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
     let display = document.getElementById('display');
     let buttons = document.querySelectorAll('.buttons button');
 
+    // Add the audio element
+    let buttonClickSound = document.getElementById('buttonClickSound');
+
+    // Flag to track whether the sound has been played during the current click event
+    let soundPlayed = false;
+
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
-            let buttonText = button.textContent;
-            handleButtonClick(buttonText);
+            handleClick(button);
+        });
+
+        // Reset the soundPlayed flag when the mouse is released
+        button.addEventListener('mouseup', function () {
+            soundPlayed = false;
         });
     });
+
+    function handleClick(button) {
+        // Play the button click sound only if it hasn't been played in this click event
+        if (!soundPlayed) {
+            playButtonClickSound();
+            soundPlayed = true; // Set the flag to true to indicate that the sound has been played
+        }
+
+        let buttonText = button.textContent;
+        handleButtonClick(buttonText);
+    }
+
+    function playButtonClickSound() {
+        // Play the sound
+        buttonClickSound.currentTime = 0; // Reset the sound to the beginning (important for rapid button clicks)
+        buttonClickSound.play();
+    }
 
     function handleButtonClick(buttonText) {
         if (buttonText !== '=') {
@@ -30,7 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateDisplay(value) {
-        display.innerHTML += `<span class="elevator-font">${value}</span>`;
+        // Check if the value is one of the buttons to exclude
+        if (value !== 'AC' && value !== 'Del' && value !== '⚡') {
+            display.innerHTML += `<span class="elevator-font">${value}</span>`;
+        }
     }
 
     function evaluateExpression() {
@@ -61,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Custom calculation functions
     function calculateResult(expression) {
         // Split the expression into operands and operator
         let parts = expression.match(/(\d+(\.\d*)?|[+\-*/])/g);
@@ -103,5 +132,74 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         return result;
+    }
+
+    let acButton = document.querySelector('.ac');
+    acButton.addEventListener('click', function () {
+        resetCalculator();
+    });
+
+    let delButton = document.querySelector('.del');
+    delButton.addEventListener('click', function () {
+        deleteLastCharacter();
+    });
+
+    let thunderButton = document.querySelector('.meme');
+    thunderButton.addEventListener('click', function () {
+        showModal();
+    });
+
+    function resetCalculator() {
+        // Reset the display
+        display.innerHTML = '<span class="elevator-font"></span>';
+
+        // Reset any other state variables or history as needed
+        // For example, you might want to reset any stored values or flags
+
+        // Toggle operator buttons to their default state
+        toggleOperatorButtons(true);
+    }
+
+    function deleteLastCharacter() {
+        let displayContent = display.innerHTML;
+
+        // Remove the last character from the content
+        if (displayContent.length > 0) {
+            let lastCharElement = display.lastElementChild;
+            lastCharElement.parentNode.removeChild(lastCharElement);
+        }
+
+        // Toggle operator buttons based on the new content
+        let lastChar = getLastChar();
+        toggleOperatorButtons(lastChar === '' || !isOperator(lastChar));
+    }
+
+    function showModal() {
+        // Create the modal container
+        let modalContainer = document.createElement('div');
+        modalContainer.classList.add('modal-container');
+
+        // Create the video element
+        let videoElement = document.createElement('video');
+        videoElement.src = '../scripts/car.mp4'; // Replace with the actual video file path
+        videoElement.type = 'video/mp4'; // Specify the MIME type
+        videoElement.autoplay = true;
+        videoElement.controls = true;
+        videoElement.loop = false;
+
+        // Append the video element to the modal container
+        modalContainer.appendChild(videoElement);
+
+        // Append the modal container to the body
+        document.body.appendChild(modalContainer);
+
+        setTimeout(function () {
+            closeModal(modalContainer);
+        }, 11000);
+    }
+
+    function closeModal(modalContainer) {
+        // Remove the modal container from the body
+        document.body.removeChild(modalContainer);
     }
 });
