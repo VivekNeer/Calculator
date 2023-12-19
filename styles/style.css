@@ -1,3 +1,8 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #f2f2f2;
     margin: 0;
@@ -9,3 +14,62 @@ body {
     height: 100vh;
     overflow: auto;
 }
+
+.box {
+    width: 80%;
+    height: 500px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: rgb(240, 240, 240);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    padding: 20px;
+    height: 450px;
+    width: 92%;
+    box-sizing: border-box;
+    background-color: pink;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .box {
+        width: 90%;
+    }
+}
+
+.screen{
+    height: 100px;
+    background-color: yellowgreen;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.buttons{
+    height: 340px;
+    margin-top: 10px;
+    border-radius: 12px;
+    width: 100%;
+    background-color: bisque;
+    display: flex;
+    flex-direction: rows;
+    flex-wrap: wrap;
+}
+
+.buttons button {
+    flex-basis: 20%; /* 20% for 5 columns */
+    flex-grow: 1; /* Allow buttons to grow within the flex container */
+    margin: 1px; /* Add margin for spacing */
+    font-size: 18px; /* Adjust font size as needed */
+}
+
