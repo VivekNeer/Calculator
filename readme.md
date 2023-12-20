@@ -10,7 +10,18 @@ The requirements for this project are from [The Odin Project](https://www.theodi
 
 1. Visit the [GitHub Pages link](https://vivekneer.github.io/Calculator/) for the live calculator.
 
-2. Perform calculations using the provided buttons.
+2. If you prefer to run the calculator locally or contribute to the project, follow the steps below:
+
+    - **Clone the Repository:**
+        ```
+        git clone https://github.com/VivekNeer/Calculator.git
+        cd Calculator
+        ```
+
+    - **Open the Calculator Locally:**
+        - Open the `index.html` file in your preferred web browser.
+
+3. Perform calculations using the provided buttons.
 
 ## Features
 
@@ -27,5 +38,3 @@ The JavaScript code is organized with separate functions for different actions t
 
 The calculator produces a sound effect upon clicking any button. The sound file is included in the project.
 Click on the Thunder Emoji For a Wise Cat Lesson.
-
-
