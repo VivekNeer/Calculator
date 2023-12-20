@@ -181,7 +181,7 @@ window.addEventListener('load', function () {
 
         // Create the video element
         let videoElement = document.createElement('video');
-        videoElement.src = '../scripts/car.mp4'; // Replace with the actual video file path
+        videoElement.src = 'https://raw.githubusercontent.com/VivekNeer/Calculator/main/scripts/car.mp4'; // Replace with the actual video file path
         videoElement.type = 'video/mp4'; // Specify the MIME type
         videoElement.autoplay = true;
         videoElement.controls = true;
